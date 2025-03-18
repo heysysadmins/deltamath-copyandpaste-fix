@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
           target: { tabId: activeTab.id },
           function: function () {
             const katexMathML = document.querySelector('.katex-mathml');
-            const annotation = katexMathML.querySelector('annotation');
-            const latexExpression = annotation.textContent;
-            return latexExpression;
+            const annotations = katexMathML.querySelectorAll('annotation');
+            const lastAnnotation = annotations[annotations.length - 1];
+            return lastAnnotation ? lastAnnotation.textContent : '';
           },
         }, function (result) {
           const latexExpression = result[0].result;
@@ -30,4 +30,3 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-  
